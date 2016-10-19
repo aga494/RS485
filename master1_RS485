@@ -1,0 +1,22 @@
+#include <SoftwareSerial.h>
+SoftwareSerial RS485Serial(3,2); //RX,TX
+int A;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("komunikasi RS485:");
+  pinMode(1,OUTPUT);
+  digitalWrite(1,LOW); // set DE dan RE untuk terima data
+  RS485Serial.begin(9600);
+}
+
+void loop()
+{
+  if(RS485Serial.available())
+  {
+    A = RS485Serial.read();
+    Serial.print(A);
+    Serial.println("");
+  }
+}
